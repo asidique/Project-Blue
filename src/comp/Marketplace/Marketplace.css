@@ -1,0 +1,36 @@
+.Account-Balance {
+    position:fixed;
+    right:-0.5em;
+    top: 5em;
+    width: 5em;
+    padding:1em;
+    margin-right: -2em;
+    border-radius: 50%;
+    background: red;
+}
+.Marketplace-Title{
+}
+
+.Market-Object{
+    display: inline-block;
+    border-style: ridge;
+    margin: 1em;
+}
+.Object-Info{
+    margin-left:2em;
+}
+.Title-Field{
+    margin-bottom:1em;
+}
+.Seller-Field{
+    margin-bottom:1em;
+}
+.Buy-Button{
+    margin-bottom: 1em;
+    margin-right:1em;
+}
+.Contact-Button{
+    float:right;
+    margin-right:2em;
+    margin-bottom: 1em;
+}

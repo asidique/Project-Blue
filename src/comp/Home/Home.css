@@ -1,0 +1,60 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+/* PROFILE DASHBOARD */
+.Profile-Overview {
+    display: block;
+    background-color: lightgrey;
+}
+
+.Profile-Picture {
+    display: inline-block;
+    padding: 2em 0em 2em 2em;
+}
+
+.Profile-Picture img {
+    width: 8em;
+}
+
+.Profile-Account-Info {
+    display: inline-block;
+    padding: 2em;
+    vertical-align: top;
+}
+
+.Profile-Account-Info p {
+    margin-bottom: 0.5em;
+}
+
+.Profile-Account-QR {
+    display: inline-block;
+    float: right;
+    margin: 2em;
+}
+
+.Profile-Account-QR img {
+    width: 8em;
+}
+
+/*PROFILE OVERVIEW HEADER*/
+.Profile-Overview-Header {
+    width: 100%;
+    overflow: hidden;
+}
+.Profile-Overview-Header li {
+    display: inline-block;
+    width: 25%;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    text-align: center;
+    background-color: black;
+}
+
+.Profile-Overview-Header li img {
+    width: 2em;
+    filter: invert();
+}
