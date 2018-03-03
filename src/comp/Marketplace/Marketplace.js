@@ -56,14 +56,15 @@ class Marketplace extends Component {
       //web3.eth.defaultAccount = '0x627306090abaB3A6e1400e9345bC60c78a8BEf57';
       console.log(transaction);
          web3.eth.getAccounts((error, accounts) => {
-           console.log(web3.eth.getTransactionReceipt)
-           //web3.eth.defaultAccount = accounts[0];
+        //   console.log(web3.eth.getTransactionReceipt)
+          // web3.eth.defaultAccount = accounts[0];
            transaction.deployed().then((instance) => {
-             var transactionInstance = instance
+             var transactionInstance = instance;
               transactionInstance.deposit({from:accounts[5],value:web3.toWei(5,"ether")});
-            return  transactionInstance.transfer(accounts[0],web3.toWei(3,"ether"),{from:accounts[5]});
+            return transactionInstance.transfer(accounts[0],web3.toWei(4,"ether"),{from:accounts[5]});
+          //   var transactionAddress = transactionInstance.addressHash;
+          //   console.log(transactionAddress);
               //  return transactionInstance.withdraw(web3.toWei(3,"ether"),{from:web3.eth.accounts[0]});
-
            })
          });
      });
