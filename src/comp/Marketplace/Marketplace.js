@@ -53,15 +53,16 @@ class Marketplace extends Component {
        //App.contracts.Adoption = TruffleContract(AdoptionArtifact);
       transaction = contract(TransactionArtifact);
       transaction.setProvider(provider);
-      web3.eth.defaultAccount = '0x627306090abaB3A6e1400e9345bC60c78a8BEf57';
+      //web3.eth.defaultAccount = '0x627306090abaB3A6e1400e9345bC60c78a8BEf57';
       console.log(transaction);
          web3.eth.getAccounts((error, accounts) => {
            console.log(web3.eth.getTransactionReceipt)
-           web3.eth.defaultAccount = accounts[0];
-           transaction.deployed({from:accounts[0]}).then((instance) => {
+           //web3.eth.defaultAccount = accounts[0];
+           transaction.deployed().then((instance) => {
              var transactionInstance = instance
-              transactionInstance.deposit({from:web3.eth.accounts[5],value:web3.toWei(5,"ether")});
-                return transactionInstance.withdraw(web3.toWei(3,"ether"),{from:web3.eth.accounts[0]});
+              transactionInstance.deposit({from:accounts[5],value:web3.toWei(5,"ether")});
+            return  transactionInstance.transfer(accounts[0],web3.toWei(3,"ether"),{from:accounts[5]});
+              //  return transactionInstance.withdraw(web3.toWei(3,"ether"),{from:web3.eth.accounts[0]});
 
            })
          });

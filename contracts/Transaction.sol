@@ -7,9 +7,7 @@ contract Transaction{
     event LogDeposit(address sender, uint amount);
     event LogWithdrawal(address receiver, uint amount);
     event LogTransfer(address sender, address to, uint amount);
-    function Transaction()public {
-        poster = msg.sender;
-    }
+    
     function deposit() payable returns(bool success) {
         balances[poster] +=msg.value;
         LogDeposit(poster, msg.value);
