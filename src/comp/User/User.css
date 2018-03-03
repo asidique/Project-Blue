@@ -1,0 +1,40 @@
+.User {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.User-post-img {
+  display: inline-block;
+  width: 10em;
+  margin: 1em;
+}
+
+.User-post-text {
+  display: inline-block;
+}
+
+.User-post-name {
+  font-weight: bold;
+  font-size: 1.3em;
+  margin: 0;
+}
+
+.User-post {
+  display: block;
+  background-color: rgb(240, 240, 240);
+  width: 50em;
+  height: 10em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0.5em;
+  border: 2px solid rgb(100, 100, 100);
+  border-spacing: 0;
+}
+
+.User-post:hover {
+  transition: border 0.05s;
+  transition: background 0.1s;
+  border: 3px solid rgb(50, 50, 50);
+  background-color: rgb(245, 245, 245);
+}

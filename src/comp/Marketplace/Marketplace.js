@@ -4,25 +4,46 @@ import getWeb3 from '../../utils/getWeb3'
 import Web3 from 'web3'
 import './Marketplace.css'
 import $ from 'jquery';
-import * as firebase from 'firebase';
 import Search from '../Search/Search'
+import firebase from '../firebase'
 
 var BigNumber = require('bignumber.js');
+var accountOwner;
+
+window.onload = () => {
+  initData();
+
+}
+
+function initData() {
+    const rootref = firebase.database().ref('Accounts');
+    rootref.once('value').then(function(snap) {
+      var data = snap.val();
+      var accounts = Object.values(data);
+      accountOwner = accounts[0].Address;
+      for(var i = 1; i < 6; i++) {
+        var acc = Math.floor(Math.random() * Math.floor(10));
+
+        writePostData((accounts[acc].Address), i);
+      }
+    });
+}
 
 function GenerateMarketplace(props) {
   var data = Object.values(props.item);
   var list = Object.keys(Object.keys(props.item));
+
   return(
     <div>
       {
         list.map((index, i) => {
           if(String(props.filter).length == 0) {
             return(
-              <GenerateMarketplaceItems contract={props.contract} cost={data[index].Cost} title={data[index].Name} desc={data[index].Description} img={data[index].ImageSource} index={index} key={i} />
+              <GenerateMarketplaceItems owner={data[index].OwnerAddress} uid={data[index].UID} contract={props.contract} cost={data[index].Cost} title={data[index].Name} desc={data[index].Description} img={data[index].ImageSource} index={index} key={i} />
             )
           } else if(String(data[index].Name).toUpperCase().includes(String(props.filter).toUpperCase()))
           return(
-            <GenerateMarketplaceItems contract={props.contract} cost={data[index].Cost} title={data[index].Name} desc={data[index].Description} img={data[index].ImageSource} index={index} key={i} />
+            <GenerateMarketplaceItems owner={data[index].OwnerAddress} uid={data[index].UID} contract={props.contract} cost={data[index].Cost} title={data[index].Name} desc={data[index].Description} img={data[index].ImageSource} index={index} key={i} />
           )
         })
       }
@@ -43,13 +64,42 @@ function GenerateMarketplaceItems(props) {
           </div>
           <div className="Market-post-btn">
             <p className="Market-post-cost">{props.cost + ' ETH'}</p>
-            <button className="Market-post-buy" onClick={(e) => props.contract(5)} >Buy</button>
+            <button className="Market-post-buy" onClick={(e) => props.contract(props.uid, props.cost, accountOwner, props.owner)} >Buy</button>
             <button className="Market-post-contact">Contact</button>
           </div>
       </div>
     </div>
   )
 }
+
+function writeUserData(address, id, imageUrl, fname, lname) {
+  firebase.database().ref('Accounts/' + id).set({
+    Address: address,
+    ID: id,
+    Image : imageUrl,
+    FirstName : fname,
+    LastName : lname
+  });
+}
+
+function writePostData(id, name, description, imageURL, cost, uid, owner) {
+  firebase.database().ref('Posts/' + id).set({
+    Name: name,
+    UID: uid,
+    ImageSource : imageURL,
+    Description : description,
+    OwnerAddress : owner,
+    Cost: cost
+  });
+}
+
+function writePostData(owner, id) {
+  firebase.database().ref('Posts/' + id+'/OwnerAddress').set(owner);
+}
+
+
+
+
 
 class Marketplace extends React.Component {
   constructor(props) {
@@ -60,21 +110,35 @@ class Marketplace extends React.Component {
       searchFilter: ""
     };
 
+
     this.handleFilter = this.handleFilter.bind(this);
     this.instantiateContract = this.instantiateContract.bind(this);
   }
 
   componentDidMount() {
-    var firebase = require('firebase');
-    var config = {
-      apiKey: "AIzaSyDG9CDTPG9Xy9RcxcG-8EszO1Wughk0WLg",
-      authDomain: "project-blue-bad22.firebaseapp.com",
-      databaseURL: "https://project-blue-bad22.firebaseio.com",
-      projectId: "project-blue-bad22",
-      storageBucket: "project-blue-bad22.appspot.com",
-      messagingSenderId: "493800653303"
-    };
-    firebase.initializeApp(config);
+    var provider = new Web3.providers.HttpProvider('http://127.0.0.1:7545')
+    var web3 = new Web3(provider);
+    //FAKE NAMES
+    var fnames = ["Theresa", "Joe", "Karen", "Caroline", "Angela", "John", "Amelia", "Sally", "Sean", "Elizabeth"];
+    var lnames = ["Sutherland", "Gray", "Ball", "Buckland", "Clark", "Langdon", "Duncan", "Lawrence", "Paige", "MacDonald"];
+    var images = ["http://rs38.pbsrc.com/albums/e106/laydii_random/thankyou/Capture34-1-1.jpg?w=280&h=210&fit=crop",
+                  "http://rs710.pbsrc.com/albums/ww110/CENTURYON/MIAVATAR-ancho100pixelsalto100pixelstamao600KiBgif-1.jpg?w=280&h=210&fit=crop",
+                  "http://rs778.pbsrc.com/albums/yy67/dwilson1313/Shifter%20Academy/hyena3.jpg?w=280&h=210&fit=crop",
+                  "http://rs38.pbsrc.com/albums/e106/laydii_random/thankyou/Capture28-1-1.jpg?w=280&h=210&fit=crop",
+                  "http://rs38.pbsrc.com/albums/e106/laydii_random/thankyou/Capture51-1-1.jpg?w=280&h=210&fit=crop",
+                  "http://rs1211.pbsrc.com/albums/cc437/PhoenixC_Photos/Kingsley/day_break_taye_diggs-003-1.jpg?w=280&h=210&fit=crop",
+                  "http://rs38.pbsrc.com/albums/e106/laydii_random/thankyou/1-2.jpg?w=280&h=210&fit=crop",
+                  "http://rs988.pbsrc.com/albums/af4/RobertaSmith255/Avatar/100x100.jpg?w=280&h=210&fit=crop",
+                  "http://rs1127.pbsrc.com/albums/l628/ruiazevedo69/RuiAzevedo-foto-100x100.jpg?w=280&h=210&fit=crop",
+                  "http://rs381.pbsrc.com/albums/oo257/SSelenagomezz/Icons/Image117E3.jpg?w=280&h=210&fit=crop"];
+
+    web3.eth.getAccounts((error, accounts) => {
+      for(var i = 0; i < accounts.length; i++) {
+        writeUserData(accounts[i], i, images[i], fnames[i], lnames[i]);
+      }
+    });
+
+
     // Get network provider and web3 instance.
     // See utils/getWeb3 for more info.
     const rootref = firebase.database().ref('Posts');
@@ -97,7 +161,12 @@ class Marketplace extends React.Component {
     })
   }
 
-  instantiateContract(itemId) {
+  postAd() {
+
+  }
+
+  instantiateContract(itemId, itemCost, buyer, seller) {
+    console.log(itemId);
      $.getJSON('Transaction.json', function(data) {
        var provider = new Web3.providers.HttpProvider('http://127.0.0.1:7545')
        var web3 = new Web3(provider);
@@ -111,16 +180,16 @@ class Marketplace extends React.Component {
              var transactionInstance = instance;
              transactionInstance.LogDeposit().watch(function(err, result) {
              });
-            var a = transactionInstance.deposit.sendTransaction({from:accounts[2],value:web3.toWei(1,"ether")});
-            var b = transactionInstance.transfer.sendTransaction(accounts[3],web3.toWei(1,"ether"),{from:accounts[2]});
+            var a = transactionInstance.deposit.sendTransaction({from: buyer, value:web3.toWei(itemCost,"ether")});
+            var b = transactionInstance.transfer.sendTransaction(seller, web3.toWei(itemCost,"ether"),{from:buyer});
             a.then(function(i){
-                console.log(i);
+                //console.log(i);
                 var transactionReceipt = web3.eth.getTransaction(i);
                 console.log(transactionReceipt);
                  const n = new BigNumber(transactionReceipt.value);
                  var v = web3.fromWei(n, 'ether').toString();
                  //v = value of the transaction (number of ether transfered)
-                 console.log(v);
+                 console.log("Transaction Cost: " + v);
               });
            })
          });
@@ -132,7 +201,7 @@ class Marketplace extends React.Component {
     this.setState({
       searchFilter: a
     }, () => {});
-    console.log(this.state.searchFilter);
+
   }
 
 

@@ -12,6 +12,7 @@ class Header extends Component {
           <li className="Title">Title</li>
           <li className="MenuItem"><Link to="/Marketplace">Marketplace</Link></li>
           <li className="MenuItem"><Link to="/">Profile</Link></li>
+          <li className="MenuItem"><Link to="/Post">Post Ad</Link></li>
         </ul>
       </div>
     )
