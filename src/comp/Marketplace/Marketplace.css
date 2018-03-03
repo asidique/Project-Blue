@@ -11,26 +11,28 @@
 .Marketplace-Title{
 }
 
-.Market-Object{
-    display: inline-block;
-    border-style: ridge;
-    margin: 1em;
+.Market {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
 }
-.Object-Info{
-    margin-left:2em;
+
+.Market-post {
+  display: block;
+  width: 40em;
+  height: 10em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0.5em;
+  border: 2px solid black;
 }
-.Title-Field{
-    margin-bottom:1em;
+
+.Market-post-img {
+  display: inline-block;
+  height: 10em;
 }
-.Seller-Field{
-    margin-bottom:1em;
-}
-.Buy-Button{
-    margin-bottom: 1em;
-    margin-right:1em;
-}
-.Contact-Button{
-    float:right;
-    margin-right:2em;
-    margin-bottom: 1em;
+
+.Market-post-text {
+  display: inline-block;
+
 }

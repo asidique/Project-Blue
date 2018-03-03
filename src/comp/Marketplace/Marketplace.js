@@ -4,19 +4,95 @@ import getWeb3 from '../../utils/getWeb3'
 import Web3 from 'web3'
 import './Marketplace.css'
 import $ from 'jquery';
+import * as firebase from 'firebase';
 
-class Marketplace extends Component {
+var BigNumber = require('bignumber.js');
+
+function GenerateMarketplace(props) {
+  var data = Object.values(props.item);
+  var list = Object.keys(Object.keys(props.item));
+  console.log(data);
+  return(
+    <div>
+      {
+        list.map((index, i) => {
+          return(
+            <GenerateMarketplaceItems title={data[index].Name} desc={data[index].Description} img={data[index].ImageSource} index={index} key={i} />
+          )
+        })
+      }
+    </div>
+  )
+
+}
+
+function GenerateMarketplaceItems(props) {
+
+  return(
+    <div>
+    <Media>
+    <Media.Left align="middle">
+      <img width={64} height={64} src="/thumbnail.png" alt="thumbnail" />
+    </Media.Left>
+    <Media.Body>
+      <Media.Heading>Middle aligned media</Media.Heading>
+      <p>
+        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque
+        ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at,
+        tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
+        fringilla. Donec lacinia congue felis in faucibus.
+      </p>
+
+      <p>
+        Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu
+        leo. Cum sociis natoque penatibus et magnis dis parturient montes,
+        nascetur ridiculus mus.
+      </p>
+    </Media.Body>
+  </Media>
+      <div className="Market-post">
+          <img className="Market-post-img" src={props.img}/>
+          <div className="Market-post-text">
+              <p className="Market-post-text-title">{props.title}</p>
+              <p className="">{props.desc}</p>
+              <button className="Market-post-buy" onClick={(e) => this.instantiateContract(5)} >Buy</button>
+              <button className="Market-post-contact">Contact</button>
+          </div>
+      </div>
+    </div>
+  )
+}
+
+class Marketplace extends React.Component {
   constructor(props) {
     super(props)
-
     this.state = {
-      web3: null
-    }
+      web3: null,
+      posts: []
+    };
+
+
   }
 
-  componentWillMount() {
+  componentDidMount() {
+    var firebase = require('firebase');
+    var config = {
+      apiKey: "AIzaSyDG9CDTPG9Xy9RcxcG-8EszO1Wughk0WLg",
+      authDomain: "project-blue-bad22.firebaseapp.com",
+      databaseURL: "https://project-blue-bad22.firebaseio.com",
+      projectId: "project-blue-bad22",
+      storageBucket: "project-blue-bad22.appspot.com",
+      messagingSenderId: "493800653303"
+    };
+    firebase.initializeApp(config);
     // Get network provider and web3 instance.
     // See utils/getWeb3 for more info.
+    const rootref = firebase.database().ref('Posts');
+    rootref.on('value', snap => {
+      this.setState({
+        posts: snap.val()
+      })
+    })
 
     getWeb3.then(results => {
       this.setState({
@@ -24,7 +100,7 @@ class Marketplace extends Component {
       })
 
     }).then(() => {
-      console.log(this.state.web3);
+      //console.log(this.state.web3);
     })
     .catch(() => {
       console.log('Error finding web3.')
@@ -38,7 +114,6 @@ class Marketplace extends Component {
      * Normally these functions would be called in the context of a
      * state management library, but for convenience I've placed them here.
      */
-     console.log("IM WORKING");
 
      //var data = JSON.parse('Transaction.json');
      //console.log(data);
@@ -54,85 +129,53 @@ class Marketplace extends Component {
       transaction = contract(TransactionArtifact);
       transaction.setProvider(provider);
       //web3.eth.defaultAccount = '0x627306090abaB3A6e1400e9345bC60c78a8BEf57';
-      console.log(transaction);
          web3.eth.getAccounts((error, accounts) => {
-        //   console.log(web3.eth.getTransactionReceipt)
-          // web3.eth.defaultAccount = accounts[0];
+        //  web3.eth.defaultAccount = accounts[0];
            transaction.deployed().then((instance) => {
              var transactionInstance = instance;
-              transactionInstance.deposit({from:accounts[5],value:web3.toWei(5,"ether")});
-            return transactionInstance.transfer(accounts[0],web3.toWei(4,"ether"),{from:accounts[5]});
-          //   var transactionAddress = transactionInstance.addressHash;
-          //   console.log(transactionAddress);
-              //  return transactionInstance.withdraw(web3.toWei(3,"ether"),{from:web3.eth.accounts[0]});
+             transactionInstance.LogDeposit().watch(function(err, result) {
+               //console.log(result);
+             });
+            //transactionInstance.deposit({from:accounts[1],value:web3.toWei(2,"ether")});
+            //return transactionInstance.transfer(accounts[2],web3.toWei(2,"ether"),{from:accounts[1]});
+            var a = transactionInstance.deposit.sendTransaction({from:accounts[2],value:web3.toWei(1,"ether")});
+            var b = transactionInstance.transfer.sendTransaction(accounts[3],web3.toWei(1,"ether"),{from:accounts[2]});
+            a.then(function(i){
+                //transactionID
+                console.log(i);
+                var transactionReceipt = web3.eth.getTransaction(i);
+                console.log(transactionReceipt);
+                 const n = new BigNumber(transactionReceipt.value);
+                 var v = web3.fromWei(n, 'ether').toString();
+                 //v = value of the transaction (number of ether transfered)
+                 console.log(v);
+              });
            })
          });
      });
 
-
-
-
-
-
-
-    /*const transaction = contract(TransactionContract)
-
-    // Declaring this for later so we can chain functions on SimpleStorage.
-    var transactionInstance;
-
-    // Get accounts.
-    this.state.web3.eth.getAccounts((error, accounts) => {
-      transaction.deployed().then((instance) => {
-        transactionInstance = instance
-
-        // Stores a given value, 5 by default.
-        return transactionInstance.buy(itemId, {from: accounts[0]})
-      })
-    })*/
   }
 
+
+
   render() {
+
     return (
       <div className='Marketplace'>
           <div className="Account-Balance">
             14 eth
           </div>
 
-        {/* INSERT MARKPLACE FRONT END CODE HERE. DELETE THIS LINE*/
-            /*
-                <form action="/action_page.php">
-                    <input type="text" placeholder="Search.." name="search">
-                        <button type="submit"><i class="fa fa-search"></i></button>
-                </form>*/
+        {
         <div className="Marketplace-Page">
-            <div className="Marketplace-Page-Container">
+          <div className="Marketplace-Page-Container">
             <p className="Marketplace-Title">MARKET PLACE</p>
             <div className="Search-Container">
-                <input type="text" placeholder="Search.." name="search"/>
-                <button type="submit">Magnifying glass Icon/add it in the search bar</button>
             </div>
-            </div>
-            <div className="Market">
-                <ul>
-                    <div className="Market-Object">
-                        <img className="Object-Image" src="Images/qr_sample.png"/>
-                        <div className="Object-Info">
-                            <p className="Title-Field">Title</p>
-                            <p className="Seller-Field">Seller</p>
-                            <button className="Buy-Button" onClick={(e) => this.instantiateContract(5)} >Buy</button><button className="Contact-Button">Contact</button>
-                        </div>
-                    </div>
-                    <div className="Market-Object">
-                        <img className="Object-Image" src="Images/qr_sample.png"/>
-                        <div className="Object-Info">
-                            <p className="Title-Field">Title</p>
-                            <p className="Seller-Field">Seller</p>
-                            <button className="Buy-Button">Buy</button><button className="Contact-Button">Contact</button>
-                        </div>
-                    </div>
-                </ul>
-
-            </div>
+          </div>
+          <div className="Market">
+            <GenerateMarketplace item={this.state.posts} />
+          </div>
         </div>
         }
       </div>
