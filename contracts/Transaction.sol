@@ -1,47 +1,34 @@
-pragma solidity ^0.4.17;
+pragma solidity ^0.4.11;
 
+contract Transaction{
+    address poster;
+    mapping (address => uint256) public balances;
 
-contract Coin {
-    // The keyword "public" makes those variables
-    // readable from outside.
-    address public minter;
-    mapping (address => uint) public balances;
-
-    // Events allow light clients to react on
-    // changes efficiently.
-    event Sent(address from, address to, uint amount);
-
-    // This is the constructor whose code is
-    // run only when the contract is created.
-    function Coin() {
-        minter = msg.sender;
+    event LogDeposit(address sender, uint amount);
+    event LogWithdrawal(address receiver, uint amount);
+    event LogTransfer(address sender, address to, uint amount);
+    function Transaction()public {
+        poster = msg.sender;
     }
-    function mint(address receiver, uint amount) {
-        if (msg.sender != minter) return;
-        balances[receiver] += amount;
-    }
-    function send(address receiver, uint amount) public returns(bool successful) {
-        if (balances[msg.sender] < amount) return false;
-        balances[msg.sender] -= amount;
-        balances[receiver] += amount;
-        Sent(msg.sender, receiver, amount);
+    function deposit() payable returns(bool success) {
+        balances[poster] +=msg.value;
+        LogDeposit(poster, msg.value);
         return true;
     }
-}
 
-contract Transaction {
-  address[100] public purchaser;
+    function withdraw(uint value) returns(bool success) {
+        if(balances[msg.sender] < value) throw;
+        balances[msg.sender] -= value;
+        msg.sender.transfer(value);
+        LogWithdrawal(msg.sender, value);
+        return true;
+    }
 
-  function buy(uint itemId) public returns (uint) {
-    require(itemId >= 0 && itemId <= 99);
-    purchaser[itemId] = msg.sender;
-    Coin c = Coin(msg.sender);
-    c.send(test, 2);
-    return itemId;
-  }
-
-  function getPurchasers() public view returns (address[100]) {
-    return purchaser;
-  }
-
+    function transfer(address to, uint value) returns(bool success) {
+        if(balances[msg.sender] < value) throw;
+        balances[msg.sender] -= value;
+        to.transfer(value);
+        LogTransfer(msg.sender, to, value);
+        return true;
+    }
 }
