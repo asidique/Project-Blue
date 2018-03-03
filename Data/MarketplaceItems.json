@@ -1,39 +1,38 @@
 {
-  "Posts": {
-    "1": {
-      "Name": "Item 1",
-      "UID": "12345",
-      "OwnerAddress": "0x12345",
-      "ImageSource": "URL",
-      "Description": "Desc"
-    },
-    "2": {
-      "Name": "Item 2",
-      "UID": "12345",
-      "OwnerAddress": "0x12345",
-      "ImageSource": "URL",
-      "Description": "Desc"
-    },
-    "3": {
-      "Name": "Item 3",
-      "UID": "12345",
-      "OwnerAddress": "0x12345",
-      "ImageSource": "URL",
-      "Description": "Desc"
-    },
-    "4": {
-      "Name": "Item 4",
-      "UID": "12345",
-      "OwnerAddress": "0x12345",
-      "ImageSource": "URL",
-      "Description": "Desc"
-    },
-    "5": {
-      "Name": "Item 5",
-      "UID": "12345",
-      "OwnerAddress": "0x12345",
-      "ImageSource": "URL",
-      "Description": "Desc"
-    }
-  }
+  "Posts" : [ null, {
+    "Description" : "This is a great potato. Just grew it yesterday. It's yellow or brown depending on how you look at it.",
+    "ImageSource" : "https://yt3.ggpht.com/-xj6WcteWVoQ/AAAAAAAAAAI/AAAAAAAAAAA/HNFcdR0iQ-g/s100-mo-c-c0xffffffff-rj-k-no/photo.jpg",
+    "Name" : "Potato",
+    "OwnerAddress" : "0x12345",
+    "UID" : "12345",
+    "Cost": "0.5"
+  }, {
+    "Description" : "High quality toothpaste, never opened!! Contact me if you are interested in negotiating.",
+    "ImageSource" : "https://www.kakasmartshopee.com/wp-content/uploads/2016/12/Pepsodent-Expert-Protection-Whitening-Toothpaste-140gm-0-0-100x100.jpg",
+    "Name" : "Toothpaste",
+    "OwnerAddress" : "0x12345",
+    "UID" : "12345",
+    "Cost": "0.2"
+  }, {
+    "Description" : "This cool space bike was lightly used. Suitable for 7-10 year olds. No scratches but there is some rust on the bottom! ",
+    "ImageSource" : "https://contents.mediadecathlon.com/p1223905/100x100/elops-500-low-frame-city-bike.jpg?k=e4ff89044490feab7a0d723d49c13f47",
+    "Name" : "Bike - With Gravity Wheels!",
+    "OwnerAddress" : "0x12345",
+    "UID" : "12345",
+    "Cost": "1.2"
+  }, {
+    "Description" : "This helmet is a perfect combination with my other bike ad! Contact me for best price!",
+    "ImageSource" : "https://bdlamotorbikes.co.uk/wp-content/uploads/2017/02/HJC-CS-15-Space-Motorbike-Helmet-White-Black-100x100.jpg",
+    "Name" : "Bike Space Helmet",
+    "OwnerAddress" : "0x12345",
+    "UID" : "12345",
+    "Cost": "1.2"
+  }, {
+    "Description" : "These are the first space jordans on New Earth! Get your pair today, limited stock.",
+    "ImageSource" : "https://i.pinimg.com/736x/98/18/f1/9818f11a759ed89719373ed65aad2dd8--court-shoes-basketball-shoes.jpg",
+    "Name" : "Space Jordans 11",
+    "OwnerAddress" : "0x12345",
+    "UID" : "12345",
+    "Cost": "4"
+  } ]
 }

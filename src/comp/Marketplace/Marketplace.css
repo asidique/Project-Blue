@@ -12,27 +12,79 @@
 }
 
 .Market {
-  width: 80%;
+  width: 65%;
   margin-left: auto;
   margin-right: auto;
 }
 
 .Market-post {
   display: block;
-  width: 40em;
+  background-color: rgb(240, 240, 240);
+  width: 50em;
   height: 10em;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 0.5em;
-  border: 2px solid black;
+  border: 2px solid rgb(100, 100, 100);
+  border-spacing: 0;
+}
+
+.Market-post-cost {
+  display: block;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
 }
 
 .Market-post-img {
   display: inline-block;
-  height: 10em;
+  margin: 1em;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: 15%;
 }
 
 .Market-post-text {
   display: inline-block;
+  vertical-align: middle;
+  padding: 0;
+  margin: 0;
+  width: 50%;
+}
 
+.Market-post-text-title {
+  font-weight: bold;
+  font-size: 1.3em;
+  vertical-align: middle;
+  margin: 0;
+}
+
+.Market-post-btn {
+  display: inline-block;
+  width: 2em;
+  margin-left: 1em;
+  margin-right: 1em;
+  width: 20%;
+}
+
+.Market-post-buy, .Market-post-contact {
+  padding: 0.5em;
+  margin-right: auto;
+  margin-left: auto;
+  width: 50%;
+}
+
+.Market-post-buy:hover {
+  background-color: #f8e9a1;
+}
+
+.Market-post-contact:hover {
+  background-color: #f8e9a1;
+}
+
+.Market-post:hover {
+  transition: border 0.05s;
+  transition: background 0.1s;
+  border: 3px solid rgb(50, 50, 50);
+  background-color: rgb(245, 245, 245);
 }
