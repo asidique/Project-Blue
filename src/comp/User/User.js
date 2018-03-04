@@ -12,15 +12,12 @@ class User extends React.Component {
   componentDidMount() {
     const rootref = firebase.database().ref('Accounts/');
 
-
     rootref.on('value', snap => {
       this.setState({
         Users: snap.val()
       })
     })
   }
-
-
 
   render() {
     var data = Object.values(this.state.Users);

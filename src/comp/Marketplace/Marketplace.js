@@ -10,25 +10,6 @@ import firebase from '../firebase'
 var BigNumber = require('bignumber.js');
 var accountOwner;
 
-window.onload = () => {
-  initData();
-
-}
-
-function initData() {
-    const rootref = firebase.database().ref('Accounts');
-    rootref.once('value').then(function(snap) {
-      var data = snap.val();
-      var accounts = Object.values(data);
-      accountOwner = accounts[0].Address;
-      for(var i = 1; i < 6; i++) {
-        var acc = Math.floor(Math.random() * Math.floor(10));
-
-        writePostData((accounts[acc].Address), i);
-      }
-    });
-}
-
 function GenerateMarketplace(props) {
   var data = Object.values(props.item);
   var list = Object.keys(Object.keys(props.item));
@@ -103,6 +84,7 @@ function writePostData(owner, id) {
 
 class Marketplace extends React.Component {
   constructor(props) {
+
     super(props)
     this.state = {
       web3: null,
@@ -113,9 +95,26 @@ class Marketplace extends React.Component {
 
     this.handleFilter = this.handleFilter.bind(this);
     this.instantiateContract = this.instantiateContract.bind(this);
+
+    const rootref1 = firebase.database().ref('Accounts');
+    rootref1.once('value').then(function(snap) {
+      var data = snap.val();
+      var accounts = Object.values(data);
+      accountOwner = accounts[0].Address;
+      firebase.database().ref('Posts').once('value').then(function(snap2) {
+        var length = Object.keys(snap2.val()).length;
+        console.log(length);
+        for(var i = 1; i <= length; i++) {
+          var acc = Math.floor(Math.random() * Math.floor(10));
+          writePostData((accounts[acc].Address), i);
+        }
+      });
+
+    });
   }
 
   componentDidMount() {
+
     var provider = new Web3.providers.HttpProvider('http://127.0.0.1:7545')
     var web3 = new Web3(provider);
     //FAKE NAMES
@@ -141,7 +140,7 @@ class Marketplace extends React.Component {
 
     // Get network provider and web3 instance.
     // See utils/getWeb3 for more info.
-    const rootref = firebase.database().ref('Posts');
+    const rootref = firebase.database().ref('Posts/');
     rootref.on('value', snap => {
       this.setState({
         posts: snap.val()
@@ -166,7 +165,7 @@ class Marketplace extends React.Component {
   }
 
   instantiateContract(itemId, itemCost, buyer, seller) {
-    console.log(itemId);
+    console.log("INFO: " + buyer + " : " + seller);
      $.getJSON('Transaction.json', function(data) {
        var provider = new Web3.providers.HttpProvider('http://127.0.0.1:7545')
        var web3 = new Web3(provider);
@@ -178,10 +177,10 @@ class Marketplace extends React.Component {
          web3.eth.getAccounts((error, accounts) => {
            transaction.deployed().then((instance) => {
              var transactionInstance = instance;
-             transactionInstance.LogDeposit().watch(function(err, result) {
-             });
-            var a = transactionInstance.deposit.sendTransaction({from: buyer, value:web3.toWei(itemCost,"ether")});
-            var b = transactionInstance.transfer.sendTransaction(seller, web3.toWei(itemCost,"ether"),{from:buyer});
+          //   transactionInstance.LogDeposit().watch(function(err, result) {
+          //   });
+            var a = transactionInstance.deposit.sendTransaction({from: accounts[3], value:web3.toWei(itemCost,"ether")});
+            var b = transactionInstance.transfer.sendTransaction(accounts[1], web3.toWei(itemCost,"ether"),{from:accounts[3]});
             a.then(function(i){
                 //console.log(i);
                 var transactionReceipt = web3.eth.getTransaction(i);
@@ -189,7 +188,14 @@ class Marketplace extends React.Component {
                  const n = new BigNumber(transactionReceipt.value);
                  var v = web3.fromWei(n, 'ether').toString();
                  //v = value of the transaction (number of ether transfered)
-                 console.log("Transaction Cost: " + v);
+              });
+            b.then(function(i){
+                //console.log(i);
+                var transactionReceipt = web3.eth.getTransaction(i);
+                console.log(transactionReceipt);
+                 const n = new BigNumber(transactionReceipt.value);
+                 var v = web3.fromWei(n, 'ether').toString();
+                 //v = value of the transaction (number of ether transfered)
               });
            })
          });

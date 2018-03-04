@@ -1,0 +1,51 @@
+.Post {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.Post-Title {
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+.h4 {
+  text-align: center;
+}
+
+.Post-Form {
+  text-align: center;
+  background-color: rgb(240, 240, 240);
+  padding: 4em;
+}
+
+.Post-Table-Label {
+  text-align: right;
+  padding-right: 2em;
+}
+
+.Post-Form-Input {
+  display: block;
+  width: 80%;
+  margin: 0.5em;
+  font-size: 1.4em;
+  padding: 0.5em;
+}
+
+.Post-Form-Table {
+  width: 100%;
+}
+.Post-Form-Btn {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.5em;
+  margin-top: 2em;
+  width: 20em;
+}
+
+.Post-Form-Btn:hover {
+  background-color: #f8e9a1;
+}
