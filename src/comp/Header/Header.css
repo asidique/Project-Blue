@@ -2,19 +2,65 @@
 .Header {
   display: block;
   width: 100%;
-  background-color: red;
+  background-color: #bfeaff;
 }
 
 .MenuItem {
   display: inline-block;
   float: right;
-  background-color: grey;
+  background-color: #bfeaff;
+  padding: 1em;
+  font-size: 1.3em;
+  padding-top: 1.5em;
+  color: black;
+}
+
+.Menu {
+  margin-right: 6em;
+}
+
+.MenuItem:hover {
+  transition: 0.2s;
+  background-color: #189ad6;
+  color: white;
+}
+
+/* unvisited link */
+a:link {
+    color: black;
+}
+
+/* visited link */
+a:visited {
+    color: black;
+}
+
+/* mouse over link */
+a:hover {
+    color: #133863;
+}
+
+/* selected link */
+a:active {
+    color: #133863;
+}
+
+.Title {
+  display: inline-block;
+  background-color: #bfeaff;
+  color: #133863;
+  left: 0;
+  font-size: 1.5em;
+  font-weight: bold;
+  padding: 1em;
+
+}
+
+.Logo {
+  display: inline;
   padding: 1em;
 }
 
-.Logo, .Title {
-  display: inline-block;
-  background-color: grey;
-  left: 0;
-  padding: 1em;
+.Logo img {
+  height: 4em;
 }

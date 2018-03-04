@@ -8,11 +8,13 @@ class Header extends Component {
     return (
       <div className="Header">
         <ul className="Menu">
-          <li className="Logo">Logo</li>
-          <li className="Title">Title</li>
-          <li className="MenuItem"><Link to="/Marketplace">Marketplace</Link></li>
-          <li className="MenuItem"><Link to="/">Profile</Link></li>
-          <li className="MenuItem"><Link to="/Post">Post Ad</Link></li>
+          <li className="Logo"><img src={"Images/logo.png"}/></li>
+          <li className="Title">BlueChain</li>
+          <Link to="/Marketplace"><li className="MenuItem">Marketplace</li></Link>
+          <Link to="/Scan"><li className="MenuItem">Scan</li></Link>
+          <Link to="/Post"><li className="MenuItem">Post Ad</li></Link>
+          <Link to="/"><li className="MenuItem">Profile</li></Link>
+
         </ul>
       </div>
     )

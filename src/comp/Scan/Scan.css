@@ -1,0 +1,70 @@
+.Scan {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.warranty-box {
+  padding: 1em;
+  background-color: rgb(230, 230, 230
+    );
+}
+
+.Scan-Form {
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 2em;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  height: 4em;
+  font-size: 1em;
+  padding: 0.7em;
+}
+
+.Scan-post-text-id2 {
+  color: red;
+}
+
+.Scan-Searchbar {
+  display: inline-block;
+  height: inherit;
+  margin-left: auto;
+  width: 80%;
+
+}
+
+.Scan-Form img {
+  display: inline-block;
+}
+
+.Scan-Title {
+  font-size: 2em;
+  font-weight: bold;
+  text-align: justify;
+  padding: 1em;
+  color: #133863;
+}
+
+.Scan-post-text {
+  margin: 1em;
+}
+
+.Scan-post {
+    display: block;
+    background-color: rgb(240, 240, 240);
+    width: 50em;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0.5em;
+    border: 2px solid rgb(100, 100, 100);
+    border-spacing: 0;
+}
+
+.Scan-post:hover {
+  transition: border 0.05s;
+  transition: background 0.1s;
+  border: 3px solid rgb(50, 50, 50);
+  background-color: rgb(245, 245, 245);
+}

@@ -3,12 +3,29 @@
     padding: 0;
 }
 
+.Home {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
 
+.Home-Title {
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1em;
+  margin-top: 1em;
+  color: #133863;
+}
 
 /* PROFILE DASHBOARD */
-.Profile-Overview {
+.Profile-Overview  {
     display: block;
-    background-color: lightgrey;
+    background-color: rgb(240, 240, 240) !important;
+}
+
+.Profile-Account-Transactions {
+  background-color: white;
 }
 
 .Profile-Picture {
@@ -45,16 +62,35 @@
     width: 100%;
     overflow: hidden;
 }
-.Profile-Overview-Header li {
-    display: inline-block;
-    width: 25%;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
-    text-align: center;
-    background-color: black;
+
+.Profile-Balance {
+  font-size: 1.5em;
+  font-weight: bold;
 }
 
-.Profile-Overview-Header li img {
-    width: 2em;
-    filter: invert();
+.Buying-post {
+  margin: 1em;
+  background-color: rgb(230, 230, 230);
+}
+
+.Selling-post {
+  margin: 1em;
+  background-color: rgb(230, 230, 230);
+}
+
+.Selling-post-text {
+  padding: 1em;
+}
+
+
+.Buying-post-text-val {
+  color: red;
+}
+
+.Selling-post-text-val {
+  color: green;
+}
+
+.Buying-post-text {
+  padding: 1em;
 }
