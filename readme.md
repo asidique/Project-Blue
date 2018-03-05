@@ -22,7 +22,7 @@ A fraction of the cost is returned to them via loyalty points. This is an instan
 
 ### Post Ad
 
-<img src="https://github.com/asidique/Project-Blue/blob/master/public/Images/ad.png" alt="Drawing" width="500"/>
+<img src="https://github.com/asidique/Project-Blue/blob/master/public/Images/test1.png" alt="Drawing" width="500"/>
 
 This function gives users the ability to post an ad onto the market place. Name, Description, Price and images are required to post and once posted,
 will dynamically generate a smart contract call when some buyer buys from the marketplace. Images can be local or an image online. NOTE: Once
