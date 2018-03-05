@@ -191,10 +191,10 @@ class Marketplace extends React.Component {
     var provider = new Web3.providers.HttpProvider('http://127.0.0.1:7545')
     var web3 = new Web3(provider);
     //FAKE NAMES
-    var fnames = ["Theresa", "Joe", "Karen", "Caroline", "Angela", "John", "Amelia", "Sally", "Sean", "Elizabeth"];
-    var lnames = ["Sutherland", "Gray", "Ball", "Buckland", "Clark", "Langdon", "Duncan", "Lawrence", "Paige", "MacDonald"];
-    var images = ["http://rs38.pbsrc.com/albums/e106/laydii_random/thankyou/Capture34-1-1.jpg?w=280&h=210&fit=crop",
-                  "http://rs710.pbsrc.com/albums/ww110/CENTURYON/MIAVATAR-ancho100pixelsalto100pixelstamao600KiBgif-1.jpg?w=280&h=210&fit=crop",
+    var fnames = ["Asseel", "Stefan", "Karen", "Caroline", "Angela", "John", "Amelia", "Sally", "Sean", "Elizabeth"];
+    var lnames = ["Sidique", "Bato", "Ball", "Buckland", "Clark", "Langdon", "Duncan", "Lawrence", "Paige", "MacDonald"];
+    var images = ["https://media.licdn.com/mpr/mpr/shrink_100_100/AAMAAgDGAAwAAQAAAAAAAA96AAAAJDkzNmJjNTdhLTAwMDQtNDI2Yi1iMTc5LWM5NThkMzAzNmVmNw.jpg",
+                  "https://i1.sndcdn.com/avatars-000169149405-o4sg9c-t500x500.jpg",
                   "http://rs778.pbsrc.com/albums/yy67/dwilson1313/Shifter%20Academy/hyena3.jpg?w=280&h=210&fit=crop",
                   "http://rs38.pbsrc.com/albums/e106/laydii_random/thankyou/Capture28-1-1.jpg?w=280&h=210&fit=crop",
                   "http://rs38.pbsrc.com/albums/e106/laydii_random/thankyou/Capture51-1-1.jpg?w=280&h=210&fit=crop",

@@ -26,6 +26,10 @@
   color: red;
 }
 
+.Scan-post-text-id3 {
+  color: green;
+}
+
 .Scan-Searchbar {
   display: inline-block;
   height: inherit;

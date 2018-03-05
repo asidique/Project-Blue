@@ -181,7 +181,7 @@ class Scan extends React.Component {
                           <p className="Scan-post-text-id">{"Warrantor: " + this.state.items.Warranty.warrantor }</p>
                           <p className="Scan-post-text-id">{"Coverage: " + this.state.items.Warranty.coverage }</p>
                           <p className="Scan-post-text-id">{"Date Issued: " + this.state.items.Warranty.dateIssued }</p>
-                          <p className="Scan-post-text-id2">{"Valid To: " + this.state.items.Warranty.validTo }</p>
+                          <p className="Scan-post-text-id3">{"Valid To: " + this.state.items.Warranty.validTo }</p>
                           </div>
 
                         </div>
