@@ -37,7 +37,7 @@ This is a feature where the user can interacte with the blockchain by searching 
 we retrieve information from the database, parse it and return it to the user.
 
 ## Technologies Used
-<img src="https://eternitech.com/wp-content/uploads/2016/12/ReactJS.png" alt="Drawing" style="width: 100;"/>
-<img src="https://cdn.hashnode.com/res/hashnode/image/upload/w_500/v1513013358424/BJ8dgr3Zf.png" alt="Drawing" style="width: 100;"/>
-<img src="https://alphabaymarket.com/wp-content/uploads/2017/05/Etherium1.jpg" alt="Drawing" style="width: 100;"/>
-<img src="https://i2.wp.com/ionicacademy.com/wp-content/uploads/2017/06/firebase-circle.png?ssl=1" alt="Drawing" style="width: 100;"/>
+<img src="https://eternitech.com/wp-content/uploads/2016/12/ReactJS.png" alt="Drawing" width="100"/>
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/w_500/v1513013358424/BJ8dgr3Zf.png" alt="Drawing" width="100"/>
+<img src="https://alphabaymarket.com/wp-content/uploads/2017/05/Etherium1.jpg" alt="Drawing" width="100"/>
+<img src="https://i2.wp.com/ionicacademy.com/wp-content/uploads/2017/06/firebase-circle.png?ssl=1" alt="Drawing" width="100"/>
