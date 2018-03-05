@@ -5,6 +5,7 @@
 BlueChain utilizes a blockchain to verify transactions through smart contracts. In addition to this, warranty on products can be sold and executed as a smart contract for items you might sell.
 Transactions are instantly executed. Loyalty points are also given to users who utilize this marketplace to incentivise its use.
 
+View a demo here: https://www.youtube.com/watch?v=8Y1DPuxwB04&feature=youtu.be
 
 ## Overview of Website
 
