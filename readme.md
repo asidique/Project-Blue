@@ -1,6 +1,6 @@
 # BlueChain - An ethereum based marketplace
 
-![alt text](https://github.com/asidique/Project-Blue/blob/master/public/Images/logo.png)
+<img src="https://github.com/asidique/Project-Blue/blob/master/public/Images/logo.png" alt="Drawing" width="200" style="text-align: center;"/>
 
 BlueChain utilizes a blockchain to verify transactions through smart contracts. In addition to this, warranty on products can be sold and executed as a smart contract for items you might sell.
 Transactions are instantly executed. Loyalty points are also given to users who utilize this marketplace to incentivise its use.
